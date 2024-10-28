@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Delete VM Proxmox by name
+name=$1
+
+##Find vmid by name
+vmid=$(qm list | grep "$name" | awk '{print $1}')
+
+## Delete VM
+qm stop ${vmid}
+qm destroy ${vmid}
